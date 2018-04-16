@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
+import '../css/completed.css';
 
 class List extends Component {
 
   render(){
-  const { todos } = this.props;
+  const { todos, handleClick } = this.props;
     return (
       <ul>
-        {todos.map(todo => {
-          const completion = todo.completed ? { class: "completed" } : {};
-          return <li{ ...completion }> { todo.text } </li>;
+        {todos.map((todo, index) => {
+          const completion = todo.completed ? { className: "completed" } : {};
+          return <li key = { index } data-access-key = { index } onClick = { handleClick } { ...completion }> { todo.text } </li>;
         })}
       </ul>
     );

@@ -11,25 +11,30 @@ class App extends Component {
       value: '',
       todos: []
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleButtonClick = this.handleButtonClick.bind(this);
+    this.handleListClick = this.handleListClick.bind(this);
   }
 
-  handleChange(event) {
+  handleInputChange(event) {
     this.setState({ value: event.target.value });
   }
 
-  handleClick(event) {
+  handleButtonClick(event) {
     this.setState({ todos: this.state.todos.concat([ { text: this.state.value, completed: false } ]) });
     this.setState({value: ''});
+  }
+
+  handleListClick(event) {
+    console.log(event.target);
   }
 
   render(){
     return (
       <div>
-        <InputText value = { this.state.value } onChange = { this.handleChange } />
-        <Button text = "Add to list" onClick = { this.handleClick }/>
-        <List todos = { this.state.todos } />
+        <InputText value = { this.state.value } onChange = { this.handleInputChange } />
+        <Button text = "Add to list" onClick = { this.handleButtonClick }/>
+        <List todos = { this.state.todos } handleClick = { this.handleListClick } />
       </div>
     )
   }
